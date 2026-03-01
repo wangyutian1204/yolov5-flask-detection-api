@@ -1,0 +1,89 @@
+Html
+<!-- static/index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YOLOv5目标检测系统</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <!-- 页面标题 -->
+    <header class="text-center mb-10">
+      <h1 class="text-[clamp(1.8rem,4vw,2.8rem)] font-bold text-gray-800">
+        <i class="fa fa-search-plus mr-2"></i>YOLOv5目标检测系统
+      </h1>
+      <p class="text-gray-600 mt-2">基于YOLOv5的实时目标检测API演示</p>
+    </header>
+    
+    <!-- 主内容区 -->
+    <main class="bg-white rounded-xl shadow-lg p-6 md:p-8">
+      <!-- 上传区域 -->
+      <section id="uploadSection" class="mb-10">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+          <i class="fa fa-cloud-upload text-blue-500 mr-2"></i>上传图片
+        </h2>
+        
+        <div id="dropZone" class="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-blue-500 cursor-pointer transition-all duration-300">
+          <i class="fa fa-image text-5xl text-gray-400 mb-4"></i>
+          <p class="text-gray-600 mb-4">拖放图片到此处，或点击选择文件</p>
+          <input type="file" id="imageInput" class="hidden" accept="image/*" multiple>
+          <button type="button" class="mt-2 bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-md text-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg">
+            <i class="fa fa-file-image-o mr-2"></i>选择图片
+          </button>
+        </div>
+        
+        <!-- 已选择的文件预览 -->
+        <div id="filePreview" class="mt-6 hidden">
+          <h3 class="text-lg font-medium text-gray-800 mb-3">已选择的图片</h3>
+          <div id="previewContainer" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <!-- 预览图片将动态添加到这里 -->
+          </div>
+        </div>
+      </section>
+      
+      <!-- 操作按钮 -->
+      <div id="actionButtons" class="mb-8 hidden">
+        <button id="detectButton" class="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-md text-lg font-medium transition-all duration-200 shadow-md hover:shadow-lg flex items-center">
+          <i class="fa fa-play-circle mr-2"></i>开始检测
+        </button>
+        <button id="clearButton" class="ml-3 bg-gray-200 hover:bg-gray-300 text-gray-800 px-6 py-3 rounded-md text-lg font-medium transition-all duration-200">
+          <i class="fa fa-refresh mr-2"></i>清除选择
+        </button>
+      </div>
+      
+      <!-- 检测结果 -->
+      <section id="resultsSection" class="mb-8 hidden">
+        <h2 class="text-xl font-semibold text-gray-800 mb-4 flex items-center">
+          <i class="fa fa-check-circle text-green-500 mr-2"></i>检测结果
+        </h2>
+        
+        <div id="resultsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 结果将动态添加到这里 -->
+        </div>
+      </section>
+      
+      <!-- 加载状态 -->
+      <div id="loadingIndicator" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-xl shadow-2xl flex flex-col items-center">
+          <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500 mb-4"></div>
+          <p class="text-lg font-medium text-gray-800">正在进行目标检测...</p>
+          <p class="text-sm text-gray-500 mt-2">这可能需要几秒钟时间</p>
+        </div>
+      </div>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="mt-10 text-center text-gray-500 text-sm">
+      <p>© 2025 YOLOv5目标检测系统 | 使用 Flask 和 YOLOv5 构建</p>
+    </footer>
+  </div>
+  
+  <script src="/static/script.js"></script>
+</body>
+</html>
+
